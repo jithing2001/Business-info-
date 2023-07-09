@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:machine_task2/constants.dart';
+import 'package:machine_task2/services/authentication.dart';
+import 'package:machine_task2/services/business_service.dart';
 import 'package:machine_task2/view/user/signup/user_signup.dart';
 
 class Alert extends StatelessWidget {
@@ -19,18 +21,16 @@ class Alert extends StatelessWidget {
             const Text('Are you sure?'),
             kHeight20,
             Row(
-              mainAxisAlignment:
-                  MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 InkWell(
-                  onTap: () => Get.offAll(
-                      UserSignUp()),
+                  onTap: () async {
+                    await Authentication().signOut();
+                    Get.offAll(UserSignUp());
+                  },
                   child: const Text(
                     'Yes',
-                    style: TextStyle(
-                        fontWeight:
-                            FontWeight
-                                .bold),
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 kWidth30,
@@ -38,10 +38,7 @@ class Alert extends StatelessWidget {
                   onTap: () => Get.back(),
                   child: const Text(
                     'No',
-                    style: TextStyle(
-                        fontWeight:
-                            FontWeight
-                                .bold),
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 )
               ],

@@ -97,7 +97,6 @@ class BusinessImagesScreenWidget extends StatelessWidget {
               } else {
                 detail.imageStore3 = lg.imagepath!.value;
               }
-
             },
             child: Container(
               height: 35.h,
@@ -115,25 +114,36 @@ class BusinessImagesScreenWidget extends StatelessWidget {
             ),
           ),
           kHeight10,
-          Obx(() => Container(
-                height: 115,
-                width: 115,
-                decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 223, 220, 220)),
-                child: lg.imagepath?.value == ''
-                    ? Center(
-                        child: Text(
-                        'IMAGE',
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.bold,
-                            color: const Color.fromARGB(255, 123, 123, 123)),
-                      ))
-                    : Image.file(
-                        File(lg.imagepath!.value),
-                        fit: BoxFit.cover,
-                      ),
-              )),
+          Obx(() => Stack(alignment: Alignment.topRight, children: [
+                Container(
+                  height: 115,
+                  width: 115,
+                  decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 223, 220, 220)),
+                  child: lg.imagepath?.value == ''
+                      ? Center(
+                          child: Text(
+                          'IMAGE',
+                          style: TextStyle(
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.bold,
+                              color: const Color.fromARGB(255, 123, 123, 123)),
+                        ))
+                      : Image.file(
+                          File(lg.imagepath!.value),
+                          fit: BoxFit.cover,
+                        ),
+                ),
+                IconButton(
+                    onPressed: () {
+                      lg.imagepath!.value = '';
+                    },
+                    icon: const Icon(
+                      Icons.cancel,
+                      color: Color.fromARGB(255, 123, 123, 123),
+                      size: 30,
+                    ))
+              ])),
           BottomContent(
             swipingClass: swippingClass,
             isValidationNeeded: false,

@@ -1,15 +1,15 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:machine_task2/constants.dart';
 import 'package:machine_task2/view/screens/congrats_screen/widgets/button_widget.dart';
+import 'package:machine_task2/view/screens/dashboard/dashboard.dart';
 
 class CongratsScreen extends StatelessWidget {
   const CongratsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
- 
     return SafeArea(
       child: Container(
         decoration: const BoxDecoration(
@@ -38,7 +38,11 @@ class CongratsScreen extends StatelessWidget {
               kHeight10,
               const Text('Your Business Website URL: '),
               kHeight20,
-              InkWell(onTap: () {}, child: FinalButtons()),
+              InkWell(
+                  onTap: () {
+                    Get.to(DashBoard());
+                  },
+                  child: FinalButtons()),
               kHeight10,
               FinalButtons(
                 title: 'WEBSITE',

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:machine_task2/constants.dart';
 import 'package:machine_task2/services/business_service.dart';
 import 'package:machine_task2/view/screens/congrats_screen/congrats_screen.dart';
@@ -85,6 +86,9 @@ class ScreenEight extends StatelessWidget {
   }
 
   Future<void> getImgLink(String image1, String image2, String image3) async {
+    Get.dialog(Center(
+      child: LoadingAnimationWidget.waveDots(color: Colors.white, size: 50),
+    ));
     log('method');
     if (detail.imageStore1 != null) {
       image1 = await BusinessService().uploadImage(detail.imageStore1!);

@@ -20,7 +20,7 @@ class BusinessService {
     }
   }
 
-    Future<void> addBusiness(String img1, String img2, String img3) async {
+  Future<void> addBusiness(String img1, String img2, String img3) async {
     BusinessModel model = BusinessModel(
         businessName: detail.businessNameController.text,
         city: detail.cityController.text,
@@ -51,5 +51,17 @@ class BusinessService {
     final docRef = collectionRef.doc('business info');
     final json = model.toJson();
     await docRef.set(json);
+    clearFunction();
+  }
+
+  clearFunction() {
+    detail.businessNameController.clear();
+    detail.cityController.clear();
+    detail.pinCodeController.clear();
+    detail.addressController.clear();
+    detail.phoneController.clear();
+    detail.descriptionController.clear();
+    detail.mailController.clear();
+    detail.websiteController.clear();
   }
 }
